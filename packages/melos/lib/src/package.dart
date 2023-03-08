@@ -907,9 +907,8 @@ class Package {
     final versionsRaw =
         (json.decode(response.body) as Map)['versions'] as List<dynamic>;
     for (final versionElement in versionsRaw) {
-      if (versionElement is Map<String, dynamic>) {
-        versions.add(versionElement['version'] as String);
-      }
+      final castedVersionElement = versionElement as Map<String, dynamic>;
+      versions.add(castedVersionElement['version'] as String);
     }
     versions.sort((String a, String b) {
       return Version.prioritize(Version.parse(a), Version.parse(b));
